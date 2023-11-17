@@ -1,4 +1,5 @@
 const Usuario = require('../models/Usuario');
+const bcryptjs = require('bcryptjs');
 
 // Resolver: son funciones que son responsables de retornar los valores que existen en los 
 const resolvers = {
@@ -21,6 +22,11 @@ const resolvers = {
 
             try
             {
+                // Hashear Password
+                const salt = await bcryptjs.genSalt(10);
+                input.password = await bcryptjs.hash(password, salt);
+                console.log(input);
+
                 const nuevoUsuario = new Usuario(input);
                 console.log(nuevoUsuario);
 

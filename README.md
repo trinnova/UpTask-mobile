@@ -23,3 +23,5 @@
     - `npm i mongoose dotenv`
 1. MongoDB Compass
     - [Descarga](https://www.mongodb.com/try/download/compass)
+1. Hash Password:
+    - `npm i bcryptjs`
