@@ -28,3 +28,6 @@
 1. JSON WEB TOKEN
     - `npm i jsonwebtoken`
         - Valir el JSON WEB TOKEN [jwt.io](https://jwt.io/)
+1. GraphQL:
+    - Una vez que corremos: `npm run dev`, en la consola sale la URL en la cual esta listo el server, solo es dar: **Control + Click** sobre el enlace
+    - [Servidor listo en la URL](http://localhost:4000/)

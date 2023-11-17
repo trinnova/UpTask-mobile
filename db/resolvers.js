@@ -75,6 +75,10 @@ const resolvers = {
             return {
                 token: crearToken(existeUsuario, process.env.SECRETA,'2hr')
             }
+        },
+
+        nuevoProyecto: async (_, {input}) => {
+            console.log('creando proyecto');
         }
     }
 };
