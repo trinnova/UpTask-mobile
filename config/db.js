@@ -10,7 +10,7 @@ const conectarDB = async () => {
             // useCreateIndex: true
         });
 
-        console.log('DB Conectada');
+        console.log('Conexión exitosa a la DB');
     } catch (e) {
         console.log('Hubo un error');
         console.log(e);

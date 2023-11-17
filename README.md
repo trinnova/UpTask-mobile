@@ -21,3 +21,5 @@
     - Creamos una cuenta y seleccionamos la opción _Free_
 1. Mongoose
     - `npm i mongoose dotenv`
+1. MongoDB Compass
+    - [Descarga](https://www.mongodb.com/try/download/compass)
