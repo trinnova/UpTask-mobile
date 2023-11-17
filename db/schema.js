@@ -17,6 +17,10 @@ const typeDefs = gql`
 
         obtenerTecnologia: [Tecnologia]
     }
+
+    type Mutation {
+        crearUsuario: String
+    }
 `;
 
 // Permite exportarlo para otro archivo
