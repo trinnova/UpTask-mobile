@@ -20,12 +20,19 @@ const typeDefs = gql`
 
     input UsuarioInput {
         nombre: String! # ! indica que es un campo obligatorio
-        email: String
-        password: String
+        email: String!
+        password: String!
+    }
+
+    input AutenticarInput {
+        email: String!
+        password: String!
     }
 
     type Mutation {
         crearUsuario(input: UsuarioInput) : String
+
+        autenticarUsuario(input: AutenticarInput) : String
     }
 `;
 
