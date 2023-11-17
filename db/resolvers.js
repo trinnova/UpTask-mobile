@@ -1,5 +1,15 @@
 const Usuario = require('../models/Usuario');
 const bcryptjs = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+require('dotenv').config({path: 'variables.env'});
+
+// Crear y firm un JWT
+const crearToken = (usuario, secreta, expiresIn) => {
+    console.log(usuario);
+    const { id, email } = usuario;
+
+    return jwt.sign( { id, email}, secreta, { expiresIn } );
+}
 
 // Resolver: son funciones que son responsables de retornar los valores que existen en los 
 const resolvers = {
@@ -62,7 +72,9 @@ const resolvers = {
             }
 
             // Dar acceso a la app
-            return "Has iniciado sesión";
+            return {
+                token: crearToken(existeUsuario, process.env.SECRETA,'2hr')
+            }
         }
     }
 };

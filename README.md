@@ -25,3 +25,6 @@
     - [Descarga](https://www.mongodb.com/try/download/compass)
 1. Hash Password:
     - `npm i bcryptjs`
+1. JSON WEB TOKEN
+    - `npm i jsonwebtoken`
+        - Valir el JSON WEB TOKEN [jwt.io](https://jwt.io/)
