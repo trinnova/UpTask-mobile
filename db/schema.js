@@ -18,8 +18,14 @@ const typeDefs = gql`
         obtenerTecnologia: [Tecnologia]
     }
 
+    input UsuarioInput {
+        nombre: String! # ! indica que es un campo obligatorio
+        email: String
+        password: String
+    }
+
     type Mutation {
-        crearUsuario: String
+        crearUsuario(input: UsuarioInput) : String
     }
 `;
 

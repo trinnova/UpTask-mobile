@@ -52,8 +52,9 @@ const resolvers = {
     },
 
     Mutation: {
-        crearUsuario: () => {
-            console.log('Creando usuario');
+        crearUsuario: (_, {input}) => {
+            console.log(input);
+            console.log('Creando usuario...');
         }
     }
 };
