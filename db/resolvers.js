@@ -96,7 +96,9 @@ const resolvers = {
             {
                 console.log(error);
             }
-        }
+        },
+
+
     }
 };
 
