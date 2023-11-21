@@ -49,7 +49,7 @@ const typeDefs = gql`
 
         nuevoProyecto(input: ProyectoInput) : Proyecto
 
-        actualizaProyecto(id : ID!, input: ProyectoInput) : Proyecto
+        actualizarProyecto(id : ID!, input: ProyectoInput) : Proyecto
     }
 `;
 
