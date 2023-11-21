@@ -78,10 +78,14 @@ const resolvers = {
             }
         },
 
-        nuevoProyecto: async (_, {input}) => {
+        nuevoProyecto: async (_, {input}, ctx) => {
+
             try
             {
                 const proyecto = new Proyecto(input);
+
+                // Asociar el creador
+                proyecto.creador = ctx.usuario.id;
 
                 // Almacenar en la BD
                 const resultado = await proyecto.save();
