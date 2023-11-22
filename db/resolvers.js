@@ -8,9 +8,9 @@ require('dotenv').config({path: 'variables.env'});
 // Crear y firm un JWT
 const crearToken = (usuario, secreta, expiresIn) => {
     console.log(usuario);
-    const { id, email } = usuario;
+    const { id, email, nombre } = usuario;
 
-    return jwt.sign( { id, email}, secreta, { expiresIn } );
+    return jwt.sign( { id, email, nombre}, secreta, { expiresIn } );
 }
 
 // Resolver: son funciones que son responsables de retornar los valores que existen en los 
@@ -26,6 +26,7 @@ const resolvers = {
             const tareas = await Tarea.find( { creador: ctx.usuario.id } ).where('proyecto').equals(input.proyecto);
 
             return tareas;
+        }
     },
 
     Mutation: {
@@ -84,12 +85,11 @@ const resolvers = {
 
             // Dar acceso a la app
             return {
-                token: crearToken(existeUsuario, process.env.SECRETA,'2hr')
+                token: crearToken(existeUsuario, process.env.SECRETA,'4hr')
             }
         },
 
         nuevoProyecto: async (_, {input}, ctx) => {
-
             try
             {
                 const proyecto = new Proyecto(input);
@@ -108,7 +108,7 @@ const resolvers = {
             }
         },
 
-        actualizarProyecto: async (_, { id, input}, ctx) => {
+        actualizarProyecto: async (_, {id, input}, ctx) => {
             // Revisar si el proyecto existe
             let proyecto = await Proyecto.findById(id);
 
@@ -164,7 +164,7 @@ const resolvers = {
             }
         },
 
-        actualizarTarea: async (_, {id, input, estado }, ctx) => {
+        actualizarTarea: async (_, {id, input, estado}, ctx) => {
             // Revisar si existe la tarea
             let tarea = await Tarea.findById(id);
 
@@ -183,9 +183,30 @@ const resolvers = {
             input.estado = estado;
 
             // Guardar y Retornar la Tarea
-            tarea = await Tarea.findByIdAndUpdate( { _id : id}, input, { new: true} );
+            tarea = await Tarea.findOneAndUpdate( { _id : id}, input, { new: true} );
 
             return tarea;
+        },
+
+        eliminarTarea: async (_, {id}, ctx) => {
+            // Revisar si existe la tarea
+            let tarea = await Tarea.findById(id);
+
+            if (!tarea)
+            {   
+                throw new Error('Tarea no encontrada');
+            }
+
+            // Si la persona que edita es el creador
+            if (tarea.creador.toString() !== ctx.usuario.id)
+            {
+                throw new Error('No tienes las credenciales para editar');
+            }
+
+            // Eliminar
+            await Tarea.findOneAndDelete({_id: id});
+
+            return "Tarea Eliminada";
         }
     }
 };
