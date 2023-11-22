@@ -1,4 +1,4 @@
-# Proyecto UpTask
+# Proyecto UpTaskGraphQL
 
 ## Tecnologías:
 1. React Native
