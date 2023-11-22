@@ -15,7 +15,11 @@ const crearToken = (usuario, secreta, expiresIn) => {
 // Resolver: son funciones que son responsables de retornar los valores que existen en los 
 const resolvers = {
     Query: {
+        obtenerProyectos: async (_, {}, ctx) => {
+            const proyectos = await Proyecto.find( { creador: ctx.usuario.id} );
 
+            return proyectos;
+        }
     },
 
     Mutation: {
